@@ -13,12 +13,14 @@ namespace TFSOnline
     /// </summary>
     public class BugsController : Controller
     {
-        private IHubContext _hub;
+        private IHubContext _bugshub;
+        private IHubContext _abhub;
         private readonly TFSOnlineContext db;
 
         public BugsController(IConnectionManager connectionManager, TFSOnlineContext context)
 	    {
-            _hub = connectionManager.GetHubContext<BugHub>();
+            _bugshub = connectionManager.GetHubContext<BugPerUserHub>();
+            _abhub = connectionManager.GetHubContext<AnnoucementBugHub>();
             db = context;
 	    }
 
@@ -38,6 +40,7 @@ namespace TFSOnline
 
                 return db.Bugs.Where(b => b.AssignedTo == username && b.State.ToString() == bugState);
             }
+
         }
 
         // Web API expects primitives coming from the request body to have no key value (e.g. '') - they should be encoded, then as '=value'
@@ -46,6 +49,21 @@ namespace TFSOnline
             db.Bugs.Add(bug);
             db.SaveChanges();
 
+            //Get last created annoucement
+            string lastAnnouncement = db.Announcements.OrderBy(a => a.Id).LastOrDefault().Message;
+            
+            _abhub.Clients.All.updateAnnouncements(new GlobalAnnoucementViewModel() { BugId = bug.BugId, LastAnnouncement = lastAnnouncement});
+
+            //call signalR client on assignedtoUser 
+            BugsViewModel viewModel = new BugsViewModel();
+            var allBugs = db.Bugs;
+
+            //Get total work items
+            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Active).Count();
+            //Get Resolved work items
+            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Resolved).Count();
+
+            _bugshub.Clients.Group(bug.AssignedTo).updateBugs(viewModel);
         }
 
         public Bug Put(int id, Bug bug)
@@ -53,6 +71,17 @@ namespace TFSOnline
             var bugToUpdate = db.Bugs.First(b => b.BugId == id);
             bugToUpdate = bug;
             db.SaveChanges();
+
+            //call signalR client on assignedtoUser 
+            BugsViewModel viewModel = new BugsViewModel();
+            var allBugs = db.Bugs;
+
+            //Get total work items
+            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Active).Count();
+            //Get Resolved work items
+            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Resolved).Count();
+
+            _bugshub.Clients.Group(bug.AssignedTo).updateBugs(viewModel);
 
             return bug;
         }
