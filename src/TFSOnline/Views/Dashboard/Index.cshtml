@@ -1,13 +1,24 @@
-﻿@{
+﻿@using System.Security.Principal
+
+@{
     //TODO: Until we have a way to specify the layout page at application level.
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Home Page";
 }
 
+<div class="row"> 
+    <h1 class="title-text">
+        Click on the tiles to start!
+
+    </h1>
+    <p>
+          
+    </p>
+</div>
 <div class="row">
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail tile tile-double tile-blue">
-            <a href="#">
+            <a href="@Url.Action("Querybugs", "Query", new { assignedTo=Context.User.Identity.GetUserName(), bugState="Active" })">
                 <h2 class="tile-text">
                     My work items
                 </h2>
@@ -18,7 +29,8 @@
 
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail tile tile-double  tile-red">
-            <a href="bugs/edit">
+            @*<a href="bugs/edit">*@
+            <a href="@Url.Action("Edit", "Bugs")">
                 <h2 class="tile-text">
                     New work item
                 </h2>
@@ -30,7 +42,7 @@
 <div class="row">
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail tile tile-double tile-orange">
-            <a href="#">
+            <a href="@Url.Action("Querybugs", "Query", new { assignedTo=Context.User.Identity.GetUserName(), bugState="Resolved" })">
                 <h2 class="tile-text">
                     My resolved bugs
                 </h2>
@@ -40,7 +52,7 @@
 
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail tile tile-double tile-green">
-            <a href="#">
+            <a href="@Url.Action("Querybugs", "Query")">
                 <h2 class="tile-text">
                     Query
                 </h2>
