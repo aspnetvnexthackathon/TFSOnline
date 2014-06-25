@@ -18,9 +18,15 @@ namespace TFSOnline.Models
 
         public DbSet<Bug> Bugs { get; set; }
 
+        public DbSet<UserSavedQuery> UserSavedQueries { get; set; }
+
+        public DbSet<SavedQuery> SavedQueries { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Bug>().Key(a => a.BugId);
+            builder.Entity<SavedQuery>().Key(a => a.RecordId);
+            builder.Entity<UserSavedQuery>().Key("UserId", "QueryId");
         }
     }
 

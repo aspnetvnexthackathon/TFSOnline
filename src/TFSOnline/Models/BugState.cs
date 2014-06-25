@@ -5,7 +5,7 @@ namespace TFSOnline
     /// <summary>
     /// Summary description for State
     /// </summary>
-    public enum State
+    public enum BugState
     {
         Active,
         Resolved,

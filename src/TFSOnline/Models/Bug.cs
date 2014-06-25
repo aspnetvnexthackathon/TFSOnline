@@ -28,10 +28,10 @@ namespace TFSOnline
         [Required]
         [StringLength(160, MinimumLength = 2)]
         [Display(Name = "Assigned To")]
-        public int AssignedTo { get; set; }
+        public string AssignedTo { get; set; }
 
         [Required]
         [Display(Name = "Status")]
-        public State State { get; set; }
+        public BugState State { get; set; }
     }
 }

@@ -6,8 +6,14 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\AspNet\Microsoft.Web.AspNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>a06f8be0-c66d-4650-a4e9-a639212bc507</ProjectGuid>
+    <ProjectGuid>b8a143de-436a-4443-8519-2b560f1b9d94</ProjectGuid>
     <OutputType>Web</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(OutputType) == 'Console'">
+    <DebuggerFlavor>ConsoleDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(OutputType) == 'Web'">
+    <DebuggerFlavor>WebDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
   </PropertyGroup>
@@ -17,9 +23,10 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DevelopmentServerPort>41532</DevelopmentServerPort>
+    <DevelopmentServerPort>9999</DevelopmentServerPort>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Config.json" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -30,12 +37,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Helios.cmd" />
-    <Content Include="Images\home-showcase.png" />
-    <Content Include="Images\logo.png" />
-    <Content Include="Images\logo.svg" />
-    <Content Include="Images\placeholder.png" />
-    <Content Include="Images\placeholder.svg" />
-    <Content Include="Config.json" />
+    <Content Include="Images\VS.jpg" />
     <Content Include="Project.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
