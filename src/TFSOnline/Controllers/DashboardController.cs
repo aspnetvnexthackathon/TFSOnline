@@ -8,8 +8,6 @@ namespace TFSOnline.Controllers
     public class DashboardController : Controller
     {
         private readonly TFSOnlineContext db;
-        private string UserName;
-
 
         public DashboardController(TFSOnlineContext context)
         {
@@ -25,10 +23,10 @@ namespace TFSOnline.Controllers
             var allBugs = db.Bugs;
 
             //Get total work items
-            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == UserName && b.State == BugState.Active).Count();
+            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == userName && b.State == BugState.Active).Count();
 
             //Get Resolved work items
-            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == UserName && b.State == BugState.Resolved).Count();
+            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == userName && b.State == BugState.Resolved).Count();
 
             //To-Do : Get Saved queries
 

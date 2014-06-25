@@ -64,6 +64,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Bugs\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -83,8 +84,15 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Hubs\AnnoucementHub.cs" />
     <Compile Include="Hubs\BugHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GlobalAnnoucementViewModel.cs" />
+=======
+    <Compile Include="Hubs\BugHub.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+>>>>>>> a06735b5e0792eaf19efd78e4536ba8cd75c868a
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Bug.cs" />
     <Compile Include="Models\BugState.cs" />
