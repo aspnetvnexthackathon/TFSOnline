@@ -1,0 +1,7 @@
+﻿{
+    "Data": {
+        "DefaultConnection": {
+            "Connectionstring": "Server=(localdb)\\MSSQLLocalDB;Database=TFSOnline;Trusted_Connection=True;MultipleActiveResultSets=true"
+        }
+    }
+}

@@ -1,0 +1,23 @@
+﻿@{
+    //TODO: Until we have a way to specify the layout page at application level.
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>TFS Online</h1>
+    <img src="~/Images/VS.jpg" />
+</div>
+
+<ul class="row list-unstyled" id="album-list">
+    @if (User.Identity.IsAuthenticated)
+    {
+        //Tiles
+        Html.ActionLink("My bugs", "GetMyBugs");
+    }
+    else
+    {
+        //Link to login page
+        @await Html.PartialAsync("_LoginPartial")
+    }
+</ul>
