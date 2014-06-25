@@ -26,7 +26,7 @@ namespace TFSOnline.Models
                 {
                     if (await db.Database.EnsureCreatedAsync())
                     {
-                        await InsertTestData(serviceProvider);
+                        //await InsertTestData(serviceProvider);
                     }
                     await CreateAdminUser(serviceProvider);
                 }
