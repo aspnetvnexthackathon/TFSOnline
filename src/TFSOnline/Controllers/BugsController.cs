@@ -18,10 +18,14 @@ namespace TFSOnline
 	    }
 
         [HttpGet]
-        public IActionResult New()
+        public IActionResult Edit(int? id = null)
         {
+            // TODO: 
+            // if Id is not null, then get the existing bug
+            // else pass a new bug model
+
             Bug model = new Bug();
-            return View("Edit", model);
+            return View(model);
         }
 
         [HttpPost]
