@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
 using System;
@@ -51,6 +52,7 @@ namespace TFSOnline
         [HttpGet]
         public IActionResult Edit(int? id = null)
         {
+           
             Bug model = null;
             if (id != null)
             {
@@ -62,6 +64,10 @@ namespace TFSOnline
                 model = new Bug();
                 model.BugId = -1;
             }
+
+            string[] allUsers = db.Users.Select(s => s.UserName).ToArray();
+            ViewBag.AssignedTo = new SelectList(db.Users, "UserName", "UserName", model.AssignedTo);
+            ViewBag.state = new SelectList(Enum.GetNames(typeof(BugState)), model.State.ToString());
 
             return View(model);
         }
