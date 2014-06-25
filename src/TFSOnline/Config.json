@@ -3,7 +3,7 @@
     "DefaultAdminPassword": "TestAdminPassword",
     "Data": {
         "DefaultConnection": {
-            "Connectionstring": "Server=(localdb)\\MSSQLLocalDB;Database=TFSOnline;Trusted_Connection=True;MultipleActiveResultSets=true"
+            "Connectionstring": "Server=(localdb)\\MSSQLLocalDB;Database=TFSOnline2;Trusted_Connection=True;MultipleActiveResultSets=true"
         }
     }
 }

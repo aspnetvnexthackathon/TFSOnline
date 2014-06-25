@@ -29,6 +29,11 @@ namespace TFSOnline
             return db.Bugs;
         }
 
+        public Bug Get(int id)
+        {
+            return db.Bugs.SingleOrDefault(b => b.BugId == id);
+        }
+
         public IEnumerable<Bug> Get(string username, string bugState)
         {
             if (String.IsNullOrEmpty(bugState))
@@ -43,71 +48,50 @@ namespace TFSOnline
 
         }
 
-        // Web API expects primitives coming from the request body to have no key value (e.g. '') - they should be encoded, then as '=value'
-        public void Post(Bug bug)
-        {
-            db.Bugs.Add(bug);
-            db.SaveChanges();
-
-            //Get last created annoucement
-            string lastAnnouncement = db.Announcements.OrderBy(a => a.Id).LastOrDefault().Message;
-            
-            _abhub.Clients.All.updateAnnouncements(new GlobalAnnoucementViewModel() { BugId = bug.BugId, LastAnnouncement = lastAnnouncement});
-
-            //call signalR client on assignedtoUser 
-            BugsViewModel viewModel = new BugsViewModel();
-            var allBugs = db.Bugs;
-
-            //Get total work items
-            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Active).Count();
-            //Get Resolved work items
-            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Resolved).Count();
-
-            _bugshub.Clients.Group(bug.AssignedTo).updateBugs(viewModel);
-        }
-
-        public Bug Put(int id, Bug bug)
-        {
-            var bugToUpdate = db.Bugs.First(b => b.BugId == id);
-            bugToUpdate = bug;
-            db.SaveChanges();
-
-            //call signalR client on assignedtoUser 
-            BugsViewModel viewModel = new BugsViewModel();
-            var allBugs = db.Bugs;
-
-            //Get total work items
-            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Active).Count();
-            //Get Resolved work items
-            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Resolved).Count();
-
-            _bugshub.Clients.Group(bug.AssignedTo).updateBugs(viewModel);
-
-            return bug;
-        }
-
-        public void Delete(int id)
-        {
-            var bug = db.Bugs.First(b => b.BugId == id);
-            db.Bugs.Remove(bug);
-            db.SaveChanges();
-	}
+       
 
         [HttpGet]
         public IActionResult Edit(int? id = null)
         {
-            // TODO: 
-            // if Id is not null, then get the existing bug
-            // else pass a new bug model
+            Bug model = null;
+            if (id != null)
+            {
+                model = Get(id.Value);
+            }
 
-            Bug model = new Bug();
+            if (model==null)
+            {
+                model = new Bug();
+                model.BugId = -1;
+            }
+
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult New(Bug bug)
+        public IActionResult Edit(Bug bug)
         {
+            if (bug.BugId == -1)
+            {
+                db.Bugs.Add(bug);
+            }
+            else
+            {
+                db.Bugs.Update(bug);
+            }
+            db.SaveChanges();
+
+            BugsViewModel viewModel = new BugsViewModel();
+            var allBugs = db.Bugs;
+
+            //Get total work items
+            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Active).Count();
+            //Get Resolved work items
+            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == bug.AssignedTo && b.State == BugState.Resolved).Count();
+
+            _bugshub.Clients.Group(bug.AssignedTo).updateBugs(viewModel);
+
             return RedirectToAction("Index", "Dashboard");
         }
     }

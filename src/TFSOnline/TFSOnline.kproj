@@ -88,6 +88,7 @@
     <Compile Include="Hubs\AnnoucementHub.cs" />
     <Compile Include="Hubs\BugHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BugsViewModel.cs" />
     <Compile Include="Models\GlobalAnnoucementViewModel.cs" />
     <Compile Include="Hubs\BugHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
