@@ -21,7 +21,7 @@ namespace TFSOnline
 
         //
         // GET: /Home/
-        public IActionResult QueryBugs(string assignedTo, BugState bugState = BugState.Active)
+        public IActionResult QueryBugs(string assignedTo = null, BugState bugState = BugState.Active)
         {
             ViewBag.AssignedTo = new SelectList(db.Users, "UserName", "UserName", assignedTo);
             ViewBag.bugState = new SelectList(Enum.GetNames(typeof(BugState)), bugState.ToString());
