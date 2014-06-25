@@ -21,6 +21,7 @@ namespace TFSOnline
             _hub = connectionManager.GetHubContext<BugHub>();
             db = context;
 	    }
+
         public IEnumerable<Bug> Get()
         {
             return db.Bugs;
@@ -61,6 +62,24 @@ namespace TFSOnline
             var bug = db.Bugs.First(b => b.BugId == id);
             db.Bugs.Remove(bug);
             db.SaveChanges();
+	}
+
+        [HttpGet]
+        public IActionResult Edit(int? id = null)
+        {
+            // TODO: 
+            // if Id is not null, then get the existing bug
+            // else pass a new bug model
+
+            Bug model = new Bug();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult New(Bug bug)
+        {
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

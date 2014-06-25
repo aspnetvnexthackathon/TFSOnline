@@ -14,7 +14,7 @@ namespace TFSOnline
         [Required]
         [StringLength(160, MinimumLength = 2)]
         [Display(Name = "Title")]
-        public string Title { get; set; }
+        public string BugTitle { get; set; }
 
         [StringLength(160, MinimumLength = 2)]
         [Display(Name = "Description")]
