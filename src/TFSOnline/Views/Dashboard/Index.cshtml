@@ -86,7 +86,7 @@
                 </h2>
             </a>
             <div>
-                Active bugs count : <span data-bind="text: activeBugsCount"></span>
+                Active bugs count : <span data-bind="text: activeBugsCount">@Model.TotalWorkItemsCount</span>
             </div>
         </div>
     </div>
@@ -113,7 +113,7 @@
                 </h2>
             </a>
             <div>
-                Total resolved bugs count : <span data-bind="text: resolvedBugsCount"></span>
+                Total resolved bugs count : <span data-bind="text: resolvedBugsCount">@Model.ResolvedWorkItemsCount</span>
             </div>
         </div>
     </div>
@@ -127,6 +127,19 @@
             </a>
         </div>
     </div>
+
+    @if (Context.User.HasClaim(c => c.Type == "CanMakeAnnouncement" && c.Value == "true"))
+    {
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail tile tile-double tile-green">
+            <a href="@Url.Action("Index", "Announcement")">
+                <h2 class="tile-text">
+                    Make an announcement
+                </h2>
+            </a>
+        </div>
+    </div>
+    }
 </div>
 
 <div>

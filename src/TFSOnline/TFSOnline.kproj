@@ -68,6 +68,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Announcement\Index.cshtml" />
     <Content Include="Views\Bugs\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
