@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNet.Mvc;
 using TFSOnline.Models;
 
 namespace TFSOnline.Controllers
@@ -7,6 +8,8 @@ namespace TFSOnline.Controllers
     public class DashboardController : Controller
     {
         private readonly TFSOnlineContext db;
+        private string UserName;
+
 
         public DashboardController(TFSOnlineContext context)
         {
@@ -17,8 +20,19 @@ namespace TFSOnline.Controllers
         // GET: /Home/
         public IActionResult Index()
         {
-            // Get most popular albums
-            return View();
+            string userName = Context.User.Identity.Name;
+            BugsViewModel viewModel = new BugsViewModel();
+            var allBugs = db.Bugs;
+
+            //Get total work items
+            viewModel.TotalWorkItemsCount = allBugs.Where(b => b.AssignedTo == UserName && b.State == BugState.Active).Count();
+
+            //Get Resolved work items
+            viewModel.ResolvedWorkItemsCount = allBugs.Where(b => b.AssignedTo == UserName && b.State == BugState.Resolved).Count();
+
+            //To-Do : Get Saved queries
+
+            return View(viewModel);
         }
     }
 }
