@@ -48,19 +48,6 @@ namespace TFSOnline
 
         }
 
-        // Web API expects primitives coming from the request body to have no key value (e.g. '') - they should be encoded, then as '=value'
-        public void Post(Bug bug)
-        {
-            db.Bugs.Add(bug);
-            db.SaveChanges();
-
-            //Get last created annoucement - Needs sorting
-            string lastAnnouncement = db.Announcements.LastOrDefault().Message;
-            
-            _abhub.Clients.All.updateAnnouncements(new GlobalAnnoucementViewModel() { BugId = bug.BugId, LastAnnouncement = lastAnnouncement});
-	}	
-       
-
         [HttpGet]
         public IActionResult Edit(int? id = null)
         {
@@ -86,9 +73,9 @@ namespace TFSOnline
             if (bug.BugId == -1)
             {
                 db.Bugs.Add(bug);
-            }
+        }
             else
-            {
+        {
                 db.Bugs.Update(bug);
             }
             db.SaveChanges();
