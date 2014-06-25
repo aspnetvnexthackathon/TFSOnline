@@ -1,26 +1,13 @@
-<<<<<<< HEAD
+
 ﻿@using System.Security.Principal
 
-=======
 ﻿@model TFSOnline.BugsViewModel
->>>>>>> origin/dev
 @{
     //TODO: Until we have a way to specify the layout page at application level.
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Home Page";
 }
 
-<<<<<<< HEAD
-<div class="row"> 
-    <h1 class="title-text">
-        Click on the tiles to start!
-
-    </h1>
-    <p>
-          
-    </p>
-</div>
-=======
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/knockout-3.0.0.js"></script>
 <script src="~/Scripts/jquery.signalR-2.0.1.min.js"></script>
@@ -80,7 +67,16 @@
     })
 </script>
 
->>>>>>> origin/dev
+<div class="row">
+    <h1 class="title-text">
+        Click on the tiles to start!
+
+    </h1>
+    <p>
+
+    </p>
+</div>
+
 <div class="row">
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail tile tile-double tile-blue">
@@ -134,9 +130,7 @@
 </div>
 
 <div>
-
     <ul class="row list-unstyled" id="album-list">
-
         <li>Annoucement panel</li>
         <li>Latest Bug : <span data-bind="text: latestBug"></span></li>
         <li>Latest Annoucement : <span data-bind="text: latestAnnoucement"></span></li>

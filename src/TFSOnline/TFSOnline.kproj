@@ -92,13 +92,13 @@
     <Compile Include="Hubs\AnnoucementHub.cs" />
     <Compile Include="Hubs\BugHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BugsViewModel.cs" />
     <Compile Include="Models\GlobalAnnoucementViewModel.cs" />
     <Compile Include="Hubs\BugHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Bug.cs" />
     <Compile Include="Models\BugState.cs" />
+    <Compile Include="Models\BugsViewModel.cs" />
     <Compile Include="Models\DbInitializer.cs" />
     <Compile Include="Models\QueryOperator.cs" />
     <Compile Include="Models\SavedQuery.cs" />
