@@ -67,6 +67,8 @@
     <Content Include="Views\Bugs\Edit.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Query\QueryBugs.cshtml" />
+    <Content Include="Views\Query\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginControlPartial.cshtml" />
@@ -84,15 +86,12 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryController.cs" />
-<<<<<<< HEAD
     <Compile Include="Hubs\AnnoucementHub.cs" />
     <Compile Include="Hubs\BugHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GlobalAnnoucementViewModel.cs" />
-=======
     <Compile Include="Hubs\BugHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
->>>>>>> a06735b5e0792eaf19efd78e4536ba8cd75c868a
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Bug.cs" />
     <Compile Include="Models\BugState.cs" />
@@ -103,10 +102,6 @@
     <Compile Include="Models\UserSavedQuery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Startup.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\" />
-    <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\AspNet\Microsoft.Web.AspNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>
