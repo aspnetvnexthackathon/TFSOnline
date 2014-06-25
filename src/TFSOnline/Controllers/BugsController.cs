@@ -16,5 +16,19 @@ namespace TFSOnline
 	    {
             _hub = connectionManager.GetHubContext<BugHub>();
 	    }
+
+        [HttpGet]
+        public IActionResult New()
+        {
+            Bug model = new Bug();
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult New(Bug bug)
+        {
+            return RedirectToAction("Index", "Dashboard");
+        }
     }
 }

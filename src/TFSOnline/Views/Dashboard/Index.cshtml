@@ -4,14 +4,56 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <img src="~/Images/VS.jpg" />
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail tile tile-double tile-blue">
+            <a href="#">
+                <h2 class="tile-text">
+                    My work items
+                </h2>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail tile tile-double  tile-red">
+            <a href="#">
+                <h2 class="tile-text">
+                    New work item
+                </h2>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail tile tile-double tile-orange">
+            <a href="#">
+                <h2 class="tile-text">
+                    My resolved bugs
+                </h2>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail tile tile-double tile-green">
+            <a href="#">
+                <h2 class="tile-text">
+                    Query
+                </h2>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div>
+
     <ul class="row list-unstyled" id="album-list">
-        Annoucement panel<hr />
-        Mybugs<hr />
-        My resolved bugs<hr />
-        Create new bug<hr />
-        Query<hr />
-        If(Admin) show tile to post an announcement.<hr />
+
+        <li>Annoucement panel</li>
+        <li>If(Admin) show tile to post an announcement.</li>
     </ul>
 </div>
