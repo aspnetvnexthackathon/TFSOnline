@@ -55,27 +55,39 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().State)
         </th>
+        <th>
+            Action
+        </th>
         <th></th>
     </tr>
     @foreach (var item in Model)
             {
-        <tr>
-            <td>
+    <tr>
+        <td>
+            <a href="@Url.Action("Edit", "Bugs", new { id = item.BugId })">
                 @Html.ValueFor(modelItem => item.BugId)
-            </td>
-            <td>
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Bugs", new { id = item.BugId })">
                 @Html.ValueFor(modelItem => item.BugTitle)
-            </td>
-            <td>
-                @Html.ValueFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.ValueFor(modelItem => item.AssignedTo)
-            </td>
-            <td>
-                @Html.ValueFor(modelItem => item.State)
-            </td>
-        </tr>
+            </a>
+        </td>
+        <td>
+            @Html.ValueFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.ValueFor(modelItem => item.AssignedTo)
+        </td>
+        <td>
+            @Html.ValueFor(modelItem => item.State)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Bugs", new { id = item.BugId })">
+                Edit
+            </a>
+        </td>
+    </tr>
     }
 
 </table>

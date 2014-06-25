@@ -10,9 +10,17 @@
     @*TODO : Until script helpers are available, adding script references manually*@
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
+
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/Site.css" />
     <link rel="stylesheet" href="~/Content/metro-bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/knockout-3.0.0.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.0.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/respond.js"></script>
+    <script src="~/signalr/hubs" type="text/javascript"></script>
     <script type="text/javascript" src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
@@ -26,7 +34,7 @@
                 </button>
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink("TFS Online", "Index", "Home", null, new { @class = "navbar-brand" })
+                    @Html.ActionLink("BugTracker++", "Index", "Home", null, new { @class = "navbar-brand" })
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -48,9 +56,7 @@
     @*TODO : Until script helpers are available, adding script references manually*@
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")*@
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/respond.js"></script>
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>
