@@ -1,0 +1,81 @@
+﻿@using System.Linq
+@model IEnumerable<TFSOnline.Bug>
+
+@{
+    //TODO: Until we have a way to specify the layout page at application level.
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Query bugs";
+}
+
+@using (Html.BeginForm("QueryBugs", "Query", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Query</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstOrDefault().AssignedTo, "Assigned To = ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("AssignedTo", string.Empty)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstOrDefault().State, "Status = ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("bugState", String.Empty)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AssignedTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().State)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.ValueFor(modelItem => item.BugId)
+            </td>
+            <td>
+                @Html.ValueFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.ValueFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.ValueFor(modelItem => item.AssignedTo)
+            </td>
+            <td>
+                @Html.ValueFor(modelItem => item.State)
+            </td>
+        </tr>
+    }
+
+</table>

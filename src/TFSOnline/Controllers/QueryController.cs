@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Mvc;
 using System;
 using TFSOnline.Models;
+using System.Linq;
+using Microsoft.AspNet.Mvc.Rendering;
 
 namespace TFSOnline
 {
@@ -18,11 +20,12 @@ namespace TFSOnline
 
         //
         // GET: /Home/
-        [HttpPost]
         public IActionResult QueryBugs(string assignedTo, BugState bugState)
         {
-            //Query all users in the system.
-            return View();
+            ViewBag.AssignedTo = new SelectList(db.Users, "UserName", "UserName", assignedTo);
+            ViewBag.bugState = new SelectList(Enum.GetNames(typeof(BugState)), bugState.ToString());
+            var bugs = db.Bugs.Where(b => b.AssignedTo == assignedTo && b.State == bugState).ToList();
+            return View(bugs);
         }
     }
 }
