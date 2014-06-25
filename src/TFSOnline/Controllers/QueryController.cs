@@ -3,6 +3,7 @@ using System;
 using TFSOnline.Models;
 using System.Linq;
 using Microsoft.AspNet.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace TFSOnline
 {
@@ -20,11 +21,15 @@ namespace TFSOnline
 
         //
         // GET: /Home/
-        public IActionResult QueryBugs(string assignedTo, BugState bugState)
+        public IActionResult QueryBugs(string assignedTo, BugState bugState = BugState.Active)
         {
             ViewBag.AssignedTo = new SelectList(db.Users, "UserName", "UserName", assignedTo);
             ViewBag.bugState = new SelectList(Enum.GetNames(typeof(BugState)), bugState.ToString());
-            var bugs = db.Bugs.Where(b => b.AssignedTo == assignedTo && b.State == bugState).ToList();
+
+            var bugs = (assignedTo == null)? 
+            db.Bugs.Where(b => b.State == bugState).ToList() :
+             db.Bugs.Where(b => b.AssignedTo == assignedTo && b.State == bugState).ToList();
+
             return View(bugs);
         }
     }

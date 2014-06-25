@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 ﻿@using System.Security.Principal
 
+=======
+﻿@model TFSOnline.BugsViewModel
+>>>>>>> origin/dev
 @{
     //TODO: Until we have a way to specify the layout page at application level.
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Home Page";
 }
 
+<<<<<<< HEAD
 <div class="row"> 
     <h1 class="title-text">
         Click on the tiles to start!
@@ -15,6 +20,67 @@
           
     </p>
 </div>
+=======
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/knockout-3.0.0.js"></script>
+<script src="~/Scripts/jquery.signalR-2.0.1.min.js"></script>
+<script src="~/signalr/hubs" type="text/javascript"></script>
+<script>
+    $(function () {
+
+        //$.connection.hub.logging = true;
+        //var bugperuserhub = $.connection.bugperuser;
+        //var announcementbughub = $.connection.announcementbug;
+
+        //bugperuserhub.client.updateBugs = function (item) {
+        //    viewModel.updateBugs(item);
+        //};
+
+        //announcementbughub.client.updateAnnoucements = function (item) {
+        //    viewModel.updateAnnoucements(item);
+        //};
+
+        //$.connection.hub.start().done(function () {
+        //    console.log('hub connection open');
+        //});
+
+
+        function viewModel() {
+            this.activeBugsCount = ko.observable();
+            this.resolvedBugsCount = ko.observable();
+            this.latestBug = ko.observable();
+            this.latestAnnoucement = ko.observable();
+
+            $.connection.hub.logging = true;
+            var bugperuserhub = $.connection.bugperuser;
+            var announcementbughub = $.connection.announcementbug;
+
+            bugperuserhub.client.updateBugs = function (item) {
+                this.updateBugs(item);
+            };
+
+            announcementbughub.client.updateAnnoucements = function (item) {
+                this.updateAnnoucements(item);
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log('hub connection open');
+            });
+
+            this.updateAnnoucements = function (globalAnnoucements) {
+                this.latestBug = globalAnnoucements.BugId;
+                this.latestAnnoucement = globalAnnoucements.LastAnnouncement;
+            };
+            this.updateBugs = function (bugsViewModel) {
+                this.activeBugsCount = bugsViewModel.TotalWorkItemsCount;
+                this.resolvedBugsCount = bugsViewModel.ResolvedWorkItemsCount;
+            };
+        };
+        ko.applyBindings(viewModel);
+    })
+</script>
+
+>>>>>>> origin/dev
 <div class="row">
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail tile tile-double tile-blue">
@@ -23,6 +89,9 @@
                     My work items
                 </h2>
             </a>
+            <div>
+                Active bugs count : <span data-bind="text: activeBugsCount"></span>
+            </div>
         </div>
     </div>
 
@@ -47,6 +116,9 @@
                     My resolved bugs
                 </h2>
             </a>
+            <div>
+                Total resolved bugs count : <span data-bind="text: resolvedBugsCount"></span>
+            </div>
         </div>
     </div>
 
@@ -66,6 +138,8 @@
     <ul class="row list-unstyled" id="album-list">
 
         <li>Annoucement panel</li>
+        <li>Latest Bug : <span data-bind="text: latestBug"></span></li>
+        <li>Latest Annoucement : <span data-bind="text: latestAnnoucement"></span></li>
         <li>If(Admin) show tile to post an announcement.</li>
     </ul>
 </div>
