@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    @if (Context.User.HasClaim(c => c.Type == "CanMakeAnnouncement" && c.Value == "true"))
+    @if (Context.User.HasClaim(c => c.Type == "CanMakeAnnouncement" && c.Value == "Allowed"))
     {
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail tile tile-double tile-green">
@@ -147,6 +147,5 @@
         <li>Annoucement panel</li>
         <li>Latest Bug : <span data-bind="text: latestBug"></span></li>
         <li>Latest Annoucement : <span data-bind="text: latestAnnoucement"></span></li>
-        <li>If(Admin) show tile to post an announcement.</li>
     </ul>
 </div>

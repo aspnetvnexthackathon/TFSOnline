@@ -5,7 +5,7 @@ using TFSOnline.Models;
 
 namespace TFSOnline.Controllers
 {
-    [Microsoft.AspNet.Mvc.Authorize("CanMakeAnnouncement", "true")]
+    [Microsoft.AspNet.Mvc.Authorize("CanMakeAnnouncement", "Allowed")]
     public class AnnouncementController : Controller
     {
         private readonly TFSOnlineContext db;
