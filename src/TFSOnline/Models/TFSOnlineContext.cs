@@ -22,11 +22,14 @@ namespace TFSOnline.Models
 
         public DbSet<SavedQuery> SavedQueries { get; set; }
 
+        public DbSet<Announcement> Announcements { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Bug>().Key(a => a.BugId);
             builder.Entity<SavedQuery>().Key(a => a.RecordId);
             builder.Entity<UserSavedQuery>().Key("UserId", "QueryId");
+            builder.Entity<Announcement>().Key(a => a.Id);
         }
     }
 
