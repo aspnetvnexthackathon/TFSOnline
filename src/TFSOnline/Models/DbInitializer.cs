@@ -68,15 +68,15 @@ namespace TFSOnline.Models
         {
             var bugs = new Bug[]
             {
-                new Bug() { AssignedTo = "test1", BugId = 1, CreatedBy = "test1", Title = "Bug1", Description = "Description 1", Priority = 0, State = BugState.Active },
-                new Bug() { AssignedTo = "test1", BugId = 2, CreatedBy = "test1", Title = "Bug2", Description = "Description 2", Priority = 1, State = BugState.Active },
-                new Bug() { AssignedTo = "test1", BugId = 3, CreatedBy = "test1", Title = "Bug3", Description = "Description 3", Priority = 2, State = BugState.Active },
-                new Bug() { AssignedTo = "test1", BugId = 4, CreatedBy = "test1", Title = "Bug4", Description = "Description 4", Priority = 0, State = BugState.Resolved },
-                new Bug() { AssignedTo = "test1", BugId = 5, CreatedBy = "test1", Title = "Bug5", Description = "Description 5", Priority = 1, State = BugState.Resolved },
-                new Bug() { AssignedTo = "test1", BugId = 6, CreatedBy = "test1", Title = "Bug6", Description = "Description 6", Priority = 2, State = BugState.Resolved },
-                new Bug() { AssignedTo = "test1", BugId = 7, CreatedBy = "test1", Title = "Bug7", Description = "Description 7", Priority = 0, State = BugState.Closed },
-                new Bug() { AssignedTo = "test1", BugId = 8, CreatedBy = "test1", Title = "Bug8", Description = "Description 8", Priority = 1, State = BugState.Closed },
-                new Bug() { AssignedTo = "test1", BugId = 9, CreatedBy = "test1", Title = "Bug9", Description = "Description 9", Priority = 2, State = BugState.Closed }
+                new Bug() { AssignedTo = "test1", BugId = 1, CreatedBy = "test1", BugTitle = "Bug1", Description = "Description 1", Priority = 0, State = BugState.Active },
+                new Bug() { AssignedTo = "test1", BugId = 2, CreatedBy = "test1", BugTitle = "Bug2", Description = "Description 2", Priority = 1, State = BugState.Active },
+                new Bug() { AssignedTo = "test1", BugId = 3, CreatedBy = "test1", BugTitle = "Bug3", Description = "Description 3", Priority = 2, State = BugState.Active },
+                new Bug() { AssignedTo = "test1", BugId = 4, CreatedBy = "test1", BugTitle = "Bug4", Description = "Description 4", Priority = 0, State = BugState.Resolved },
+                new Bug() { AssignedTo = "test1", BugId = 5, CreatedBy = "test1", BugTitle = "Bug5", Description = "Description 5", Priority = 1, State = BugState.Resolved },
+                new Bug() { AssignedTo = "test1", BugId = 6, CreatedBy = "test1", BugTitle = "Bug6", Description = "Description 6", Priority = 2, State = BugState.Resolved },
+                new Bug() { AssignedTo = "test1", BugId = 7, CreatedBy = "test1", BugTitle = "Bug7", Description = "Description 7", Priority = 0, State = BugState.Closed },
+                new Bug() { AssignedTo = "test1", BugId = 8, CreatedBy = "test1", BugTitle = "Bug8", Description = "Description 8", Priority = 1, State = BugState.Closed },
+                new Bug() { AssignedTo = "test1", BugId = 9, CreatedBy = "test1", BugTitle = "Bug9", Description = "Description 9", Priority = 2, State = BugState.Closed }
             };
 
             return bugs;
