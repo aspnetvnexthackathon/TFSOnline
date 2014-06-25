@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Infrastructure;
 using TFSOnline.Models;
 
 namespace TFSOnline.Controllers
 {
-    [Authorize("CanMakeAnnouncement", "true")]
+    [Microsoft.AspNet.Mvc.Authorize("CanMakeAnnouncement", "true")]
     public class AnnouncementController : Controller
     {
         private readonly TFSOnlineContext db;
-        //private IHubContext _hub;
+        private IHubContext _abhub;
 
-        public AnnouncementController(TFSOnlineContext context/*, IConnectionManager connectionManager*/)
+        public AnnouncementController(TFSOnlineContext context, IConnectionManager connectionManager)
         {
             db = context;
-            //_hub = connectionManager.GetHubContext<BugHub>();
+            _abhub = connectionManager.GetHubContext<AnnoucementBugHub>();
         }
 
         //
@@ -27,7 +29,12 @@ namespace TFSOnline.Controllers
         [HttpPost]
         public IActionResult MakeAnnouncement(string message)
         {
-            //TODO: Insert the announcement into the announcement table and send a message to all clients via signalr.
+            Announcement a = new Announcement() { Message = message };
+            db.Announcements.Add(a);
+            db.SaveChanges();
+
+            _abhub.Clients.All.updateAnnouncements(new GlobalAnnoucementViewModel() { LastAnnouncement = a.Message });
+
             return RedirectToAction("Index", "Dashboard");
         }
     }

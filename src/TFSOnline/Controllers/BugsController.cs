@@ -49,8 +49,8 @@ namespace TFSOnline
             db.Bugs.Add(bug);
             db.SaveChanges();
 
-            //Get last created annoucement
-            string lastAnnouncement = db.Announcements.OrderBy(a => a.Id).LastOrDefault().Message;
+            //Get last created annoucement - Needs sorting
+            string lastAnnouncement = db.Announcements.LastOrDefault().Message;
             
             _abhub.Clients.All.updateAnnouncements(new GlobalAnnoucementViewModel() { BugId = bug.BugId, LastAnnouncement = lastAnnouncement});
 
