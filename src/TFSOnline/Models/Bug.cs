@@ -27,6 +27,11 @@ namespace TFSOnline
 
         [Required]
         [StringLength(160, MinimumLength = 2)]
+        [Display(Name = "Created By")]
+        public string CreatedBy { get; set; }
+
+        [Required]
+        [StringLength(160, MinimumLength = 2)]
         [Display(Name = "Assigned To")]
         public string AssignedTo { get; set; }
 

@@ -21,6 +21,7 @@ namespace TFSOnline
         [HttpPost]
         public IActionResult QueryBugs(string assignedTo, BugState bugState)
         {
+            //Query all users in the system.
             return View();
         }
     }
