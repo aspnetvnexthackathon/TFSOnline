@@ -32,6 +32,8 @@ namespace TFSOnline.Models
 
     public class TFSOnlineContextOptions : DbContextOptions
     {
+        public string DefaultAdminUserName { get; set; }
 
+        public string DefaultAdminPassword { get; set; }
     }
 }

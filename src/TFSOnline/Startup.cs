@@ -30,7 +30,11 @@ namespace TFSOnline
 
                 // Configure DbContext
                 services.SetupOptions<TFSOnlineContextOptions>(options =>
-                    options.UseSqlServer(configuration.Get("Data:DefaultConnection:ConnectionString")));
+                    {
+                    options.DefaultAdminUserName = configuration.Get("DefaultAdminUserName");
+                    options.DefaultAdminPassword = configuration.Get("DefaultAdminPassword");
+                    options.UseSqlServer(configuration.Get("Data:DefaultConnection:ConnectionString"));
+                    });
 
                 // Add Identity services to the services container
                 services.AddIdentity<ApplicationUser>()

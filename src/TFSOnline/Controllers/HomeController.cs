@@ -16,8 +16,15 @@ namespace TFSOnline.Controllers
         // GET: /Home/
         public IActionResult Index()
         {
-            // Get most popular albums
-            return View();
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                // Get most popular albums
+                return View();
+            }
         }
     }
 }

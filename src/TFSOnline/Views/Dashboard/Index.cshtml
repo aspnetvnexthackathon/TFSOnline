@@ -7,15 +7,11 @@
 <div class="jumbotron">
     <img src="~/Images/VS.jpg" />
     <ul class="row list-unstyled" id="album-list">
-    @if (User.Identity.IsAuthenticated)
-    {
-        //Tiles
-        Html.ActionLink("My bugs", "GetMyBugs");
-    }
-    else
-    {
-        //Link to login page
-        @await Html.PartialAsync("_LoginControlPartial")
-    }
+        Annoucement panel<hr />
+        Mybugs<hr />
+        My resolved bugs<hr />
+        Create new bug<hr />
+        Query<hr />
+        If(Admin) show tile to post an announcement.<hr />
     </ul>
 </div>
