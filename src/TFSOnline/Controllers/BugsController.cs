@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TFSOnline.Models;
+using System.Security.Principal;
 
 namespace TFSOnline
 {
@@ -19,11 +20,11 @@ namespace TFSOnline
         private readonly TFSOnlineContext db;
 
         public BugsController(IConnectionManager connectionManager, TFSOnlineContext context)
-	    {
+        {
             _bugshub = connectionManager.GetHubContext<BugPerUserHub>();
             _abhub = connectionManager.GetHubContext<AnnoucementBugHub>();
             db = context;
-	    }
+        }
 
         public IEnumerable<Bug> Get()
         {
@@ -52,14 +53,13 @@ namespace TFSOnline
         [HttpGet]
         public IActionResult Edit(int? id = null)
         {
-           
             Bug model = null;
             if (id != null)
             {
                 model = Get(id.Value);
             }
 
-            if (model==null)
+            if (model == null)
             {
                 model = new Bug();
                 model.BugId = -1;
@@ -78,10 +78,11 @@ namespace TFSOnline
         {
             if (bug.BugId == -1)
             {
+                bug.CreatedBy = Context.User.Identity.GetUserName();
                 db.Bugs.Add(bug);
-        }
+            }
             else
-        {
+            {
                 db.Bugs.Update(bug);
             }
             db.SaveChanges();
